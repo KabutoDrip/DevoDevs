@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from 'react';
+
+function HeaderComp() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Function to handle screen resize and set the state
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);   // Mobile layout if screen is 768px or less
+    } else {
+      setIsMobile(false);  // Desktop layout otherwise
+    }
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  useEffect(() => {
+    handleResize();  // Check initial screen size on component mount
+    window.addEventListener('resize', handleResize);  // Listen for screen size changes
+
+    return () => {
+      window.removeEventListener('resize', handleResize);  // Cleanup listener on unmount
+    };
+  }, []);
+
+  return (
+    <header>
+      {isMobile ? (
+        <>
+          {/* Using CSS Grid layout */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 20vw 1fr',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{ paddingTop: '20px',paddingLeft: '1vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: '7vw', fontFamily: 'Poppins, sans-serif', fontWeight: 'bold' ,lineHeight:'30px'}}>AIR PRO</span>
+              <span style={{ fontSize: '4vw', fontFamily: 'Poppins, sans-serif', fontWeight: 'bold' }}>SOLUTIONS</span>
+            </div>
+
+            {/* Center the Icon.png with a fixed width of 10vw */}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ height: '20vw' }} src="./Icon.png" alt="Air Pro Solutions" />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '3vw' }}>
+              {/* Toggle between hamburger and exit icons */}
+              <img 
+                src={menuOpen ? "/exit.svg" : "/hamburger.svg"} 
+                alt={menuOpen ? "Close Menu" : "Open Menu"} 
+                style={{ width: '10vw', height: '10vw', zIndex: 3, cursor: 'pointer' }} 
+                onClick={toggleMenu}
+              />
+            </div>
+          </div>
+
+          {menuOpen && (
+            <>
+              {/* Background overlay */}
+              <div
+                style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100vw',
+                  height: '100vh',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Grey background with transparency
+                  zIndex: 1, // Ensure it is behind the dropdown and icon
+                }}
+                onClick={toggleMenu} // Close the menu when background is clicked
+              ></div>
+
+              {/* Dropdown Menu */}
+              <div
+                style={{
+                  position: 'fixed',
+                  right: '0',
+                  top: '13vh',
+                  backgroundColor: 'white',
+                  color: '#333',
+                  width: '100%',
+                  height: '100%',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                  zIndex: 2, // Ensure it is above the background overlay but below the exit icon
+                  borderRadius: '8px',
+                  fontFamily: 'Poppins, sans-serif', // Use Poppins font
+                  fontWeight: 'bold', // Set font to bold
+                  fontSize: '35px', // Set font size to 40px
+                  textAlign: 'center'
+                }}
+              >
+                <ul style={{listStyle: 'none',padding: '0',paddingTop: '10vh',margin: '0',display: 'flex',flexDirection: 'column',justifyContent: 'space-between', height: '45%'}}>
+                  <li>Contractors</li>
+                  <li>Homeowners</li>
+                  <li>Join Our Team</li>
+                  <li>Help</li>
+                </ul>
+              </div>
+            </>
+          )}
+        </>
+      ) : (
+        <div>
+          {/* Desktop Header */}
+          <h1>Desktop Header</h1>
+          <p>This is the desktop version of the header.</p>
+        </div>
+      )}
+    </header>
+  );
+}
+
+export default HeaderComp;
