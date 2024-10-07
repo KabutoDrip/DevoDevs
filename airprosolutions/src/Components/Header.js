@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';  // Import Link for navigation
 
 function HeaderComp() {
   const [isMobile, setIsMobile] = useState(false);
@@ -94,21 +95,52 @@ function HeaderComp() {
                 }}
               >
                 <ul style={{listStyle: 'none',padding: '0',paddingTop: '10vh',margin: '0',display: 'flex',flexDirection: 'column',justifyContent: 'space-between', height: '45%'}}>
-                  <li>Contractors</li>
-                  <li>Homeowners</li>
-                  <li>Join Our Team</li>
-                  <li>Help</li>
+                <li><Link to="/home">Home</Link></li>
+                  <li><Link to="/contractors">Contractors</Link></li>
+                  <li><Link to="/homeowners">Homeowners</Link></li>
+                  <li><Link to="/join">Join Our Team</Link></li>
+                  <li><Link to="/help">Help</Link></li>
                 </ul>
               </div>
             </>
           )}
         </>
       ) : (
-        <div>
-          {/* Desktop Header */}
-          <h1>Desktop Header</h1>
-          <p>This is the desktop version of the header.</p>
+        <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
+          <div className="logo">
+            <img src="Ico.webp" alt="Logo" style={{ height: '10vh' }} />
+          </div>
+          <nav className="nav-menu" style={{ flexGrow: 1, marginLeft: '20px' }}>
+            <ul style={{ listStyleType: 'none', display: 'flex', margin: 0, padding: 0, width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+              <li style={{ flexGrow: 1 }}>
+                <Link to="/home" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  Home
+                </Link>
+              </li>
+              <li style={{ flexGrow: 1 }}>
+                <Link to="/contractors" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  Contractors
+                </Link>
+              </li>
+              <li style={{ flexGrow: 1 }}>
+                <Link to="/homeowners" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  Homeowners
+                </Link>
+              </li>
+              <li style={{ flexGrow: 1 }}>
+                <Link to="/join" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  Join Our Team
+                </Link>
+              </li>
+              <li style={{ flexGrow: 1 }}>
+                <Link to="/help" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  Help
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
+      
       )}
     </header>
   );
