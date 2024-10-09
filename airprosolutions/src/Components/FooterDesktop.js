@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Phone, Mail } from 'lucide-react';
 
-function FooterTemplate() {
+function DeskFooterComp({ children }) {
   const [middleWidth, setMiddleWidth] = useState('50%');
 
-  // Adjust the middle section's width based on screen size
   const handleResize = () => {
     if (window.innerWidth >= 1200) {
-      setMiddleWidth('70%'); // Widescreen: 70%
+      setMiddleWidth('70%');
     } else if (window.innerWidth <= 768) {
-      setMiddleWidth('90%'); // Smaller screens: 90%
+      setMiddleWidth('90%');
     } else {
-      setMiddleWidth('50%'); // Normal desktop: 50%
+      setMiddleWidth('50%');
     }
   };
 
@@ -22,64 +22,94 @@ function FooterTemplate() {
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative' }}>
-      {/* Scrollable Middle Section (blue background) */}
       <div
         style={{
           width: middleWidth,
-          backgroundColor: 'blue',
+          backgroundColor: '#004AAD',
           margin: '0 auto',
           padding: '20px',
           minHeight: '100vh',
           boxSizing: 'border-box',
           color: 'white',
           overflowY: 'scroll',
+          paddingBottom: '120px',
         }}
       >
-        <h1>Main Scrollable Content</h1>
-        <p>This is the scrollable content area with a blue background. You can add long content here that scrolls vertically.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum.</p>
-        <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.</p>
-        <p>More content to show the scrolling feature. This area will scroll as it gets longer.</p>
+        {children}
       </div>
-
-      {/* Fixed Footer Section */}
       <footer
         style={{
           position: 'fixed',
           bottom: 0,
-          width: '100%',
+          left: 0,
+          right: 0,
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'space-between', // space between left and right sections
+          alignItems: 'center',
           height: '100px',
           boxSizing: 'border-box',
+          backgroundColor: 'transparent',
+          padding: '0 20px',
         }}
       >
-        {/* Left Section (Footer Info) */}
+        {/* Left section */}
         <div
           style={{
-            backgroundColor: 'transparent',
-            padding: '20px',
-            color: 'blue',
-            fontFamily: 'Poppins, sans-serif',
+            width: `calc((100% - ${middleWidth}) / 2)`, // Ensures the left section fills available white space
+            display: 'flex',
+            justifyContent: 'center', // Centers the content in the available space
+            alignItems: 'center',
           }}
         >
-          <p>Left Footer Info</p>
+          <div
+            style={{
+              color: '#004AAD',
+              fontFamily: 'Poppins, sans-serif',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+              <Phone size={20} style={{ marginRight: '5px' }} />
+              <span style={{ fontWeight: 'bold' }}>Call Us</span>
+            </div>
+            <p style={{ margin: 0 }}>+1 (123) 456-7890</p>
+          </div>
         </div>
 
-        {/* Right Section (Footer Info) */}
+        {/* Right section */}
         <div
           style={{
-            backgroundColor: 'transparent',
-            padding: '20px',
-            color: 'blue',
-            fontFamily: 'Poppins, sans-serif',
+            width: `calc((100% - ${middleWidth}) / 2)`, // Ensures the right section fills available white space
+            display: 'flex',
+            justifyContent: 'center', // Centers the content in the available space
+            alignItems: 'center',
           }}
         >
-          <p>Right Footer Info</p>
+          <div
+            style={{
+              color: '#004AAD',
+              fontFamily: 'Poppins, sans-serif',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+              <Mail size={20} style={{ marginRight: '5px' }} />
+              <span style={{ fontWeight: 'bold' }}>Email Us</span>
+            </div>
+            <p style={{ margin: 0, fontSize: '0.8em', textAlign: 'center', lineHeight: '1.2' }}>
+              airprofessionalsolutions<br />@gmail.com
+            </p>
+          </div>
         </div>
       </footer>
     </div>
   );
 }
 
-export default FooterTemplate;
+export default DeskFooterComp;

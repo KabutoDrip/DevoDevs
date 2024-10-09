@@ -1,14 +1,15 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import 'normalize.css';
 import './App.css';
 import MobileFooterComp from './Components/FooterMobile';
 import DeskFooterComp from './Components/FooterDesktop';
 import HeaderComp from './Components/Header';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/Home';
 import HomeownerPage from './Pages/Homeowners';
 import HelpPage from './Pages/Help';
 import HiringPage from './Pages/Hiring';
 import ContractorPage from './Pages/Contractors';
-import React, { useState, useEffect } from 'react';
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -29,19 +30,32 @@ function App() {
       <Router>
         <HeaderComp />
         
-        {/* Footer is always present */}
-        {isMobile ? <MobileFooterComp /> : <DeskFooterComp>
-          
-          {/* Routes will render the middle section content here */}
+        {isMobile ? (
+          <>
+            <Routes>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/contractors" element={<ContractorPage />} />
+              <Route path="/homeowners" element={<HomeownerPage />} />
+              <Route path="/join" element={<HiringPage />} />
+              <Route path="/help" element={<HelpPage />} />
+              <Route path="/" element={<Navigate replace to="/home" />} />
+              <Route path="*" element={<Navigate replace to="/home" />} />
+            </Routes>
+            <MobileFooterComp />
+          </>
+        ) : (
           <Routes>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/contractors" element={<ContractorPage />} />
-            <Route path="/homeowners" element={<HomeownerPage />} />
-            <Route path="/join" element={<HiringPage />} />
-            <Route path="/help" element={<HelpPage />} />
+            <Route element={<DeskFooterComp />}>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/contractors" element={<ContractorPage />} />
+              <Route path="/homeowners" element={<HomeownerPage />} />
+              <Route path="/join" element={<HiringPage />} />
+              <Route path="/help" element={<HelpPage />} />
+              <Route path="/" element={<Navigate replace to="/home" />} />
+              <Route path="*" element={<Navigate replace to="/home" />} />
+            </Route>
           </Routes>
-
-        </DeskFooterComp>}
+        )}
       </Router>
     </div>
   );
