@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail } from 'lucide-react';
-
+import { Outlet } from 'react-router-dom';
 function DeskFooterComp({ children }) {
   const [middleWidth, setMiddleWidth] = useState('50%');
 
@@ -35,6 +35,7 @@ function DeskFooterComp({ children }) {
           paddingBottom: '120px',
         }}
       >
+        {<Outlet />}
         {children}
       </div>
       <footer
