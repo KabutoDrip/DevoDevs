@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Services from './Services'; // Import the Services component
 
 function HomePage({ title }) {
   const [cities, setCities] = useState([
@@ -9,6 +10,8 @@ function HomePage({ title }) {
     { name: 'Parowan', lat: 37.8427, lon: -112.8280 },
     { name: 'St. George', lat: 37.0965, lon: -113.5684 }
   ]);
+
+  const [selectedService, setSelectedService] = useState(null); // Manage selected service
 
   // Function to calculate distance between two geographic points using the Haversine formula
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -62,14 +65,35 @@ function HomePage({ title }) {
     }
   }, []);
 
+  // Function to handle clicking a service
+  const handleServiceClick = (service) => {
+    setSelectedService(service); // Set the selected service to trigger component replacement
+  };
+
+  // If a service is selected, replace HomePage with the Services component
+  if (selectedService) {
+    return <Services selectedService={selectedService} />;
+  }
+
   return (
     <div style={{ fontFamily: 'Poppins, sans-serif', padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '3rem', color: '#333' }}>{title}</h1>
-      <div style={{ marginTop: '20px' }}>
+      <div>
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <img src="APS.jpg" alt="Air Professional Solutions" style={{ maxWidth: '100%', height: 'auto' }} />
+        </div>
         <h2>Southern Utah Heating and Cooling</h2>
         <h3>Installation and Repairs</h3>
         
-        <h4>Servicing the following areas:</h4>
+        <h4>Providing the following services:</h4>
+        <ul id="service-list">
+          <li onClick={() => handleServiceClick('Furnace & AC Replacement')}>Furnace & AC Replacement</li>
+          <li onClick={() => handleServiceClick('HVAC Systems Installation')}>HVAC Systems Installation</li>
+          <li onClick={() => handleServiceClick('Refrigeration Leak Repair')}>Refrigeration Leak Repair</li>
+          <li onClick={() => handleServiceClick('Refrigeration Refills')}>Refrigeration Refills</li>
+          <li onClick={() => handleServiceClick('Minisplit and Heat Pump Installation and Repairs')}>Minisplit and Heat Pump Installation and Repairs</li>
+        </ul>
+
+        <h4>In the following locations:</h4>
         <ul id="city-list">
           {cities.map((city) => (
             <li key={city.name}>{city.name}</li>
