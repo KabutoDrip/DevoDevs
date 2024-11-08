@@ -13,10 +13,9 @@ function HomePage({ title }) {
 
   const [selectedService, setSelectedService] = useState(null); // Manage selected service
 
-  // Function to calculate distance between two geographic points using the Haversine formula
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const toRadians = (degrees) => degrees * Math.PI / 180;
-    const R = 6371; // Radius of Earth in kilometers
+    const R = 6371;
     const dLat = toRadians(lat2 - lat1);
     const dLon = toRadians(lon2 - lon1);
     const a =
@@ -24,10 +23,9 @@ function HomePage({ title }) {
       Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
+    return R * c;
   };
 
-  // Sort cities by proximity to user's location
   const sortCitiesByProximity = (userLocation) => {
     const sortedCities = [...cities].sort((a, b) => {
       const distanceA = calculateDistance(userLocation.lat, userLocation.lon, a.lat, a.lon);
@@ -37,13 +35,11 @@ function HomePage({ title }) {
     setCities(sortedCities);
   };
 
-  // Sort cities alphabetically (fallback)
   const sortCitiesAlphabetically = () => {
     const sortedCities = [...cities].sort((a, b) => a.name.localeCompare(b.name));
     setCities(sortedCities);
   };
 
-  // UseEffect to get user's location and sort cities
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -55,22 +51,18 @@ function HomePage({ title }) {
           sortCitiesByProximity(userLocation);
         },
         () => {
-          // Fallback to alphabetical sorting if location access is denied
           sortCitiesAlphabetically();
         }
       );
     } else {
-      // If geolocation is not supported, fallback to alphabetical sorting
       sortCitiesAlphabetically();
     }
   }, []);
 
-  // Function to handle clicking a service
   const handleServiceClick = (service) => {
-    setSelectedService(service); // Set the selected service to trigger component replacement
+    setSelectedService(service);
   };
 
-  // If a service is selected, replace HomePage with the Services component
   if (selectedService) {
     return <Services selectedService={selectedService} />;
   }
@@ -85,13 +77,31 @@ function HomePage({ title }) {
         <h3>Installation and Repairs</h3>
         
         <h4>Providing the following services:</h4>
-        <ul id="service-list">
-          <li onClick={() => handleServiceClick('Furnace & AC Replacement')}>Furnace & AC Replacement</li>
-          <li onClick={() => handleServiceClick('HVAC Systems Installation')}>HVAC Systems Installation</li>
-          <li onClick={() => handleServiceClick('Refrigeration Leak Repair')}>Refrigeration Leak Repair</li>
-          <li onClick={() => handleServiceClick('Refrigeration Refills')}>Refrigeration Refills</li>
-          <li onClick={() => handleServiceClick('Minisplit and Heat Pump Installation and Repairs')}>Minisplit and Heat Pump Installation and Repairs</li>
-        </ul>
+        <div id="service-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {['Furnace & AC Replacement', 'HVAC Systems Installation', 'Refrigeration Leak Repair', 'Refrigeration Refills', 'Minisplit and Heat Pump Installation and Repairs'].map((service) => (
+            <button
+              key={service}
+              onClick={() => handleServiceClick(service)}
+              style={{
+                padding: '10px 15px',
+                fontSize: '16px',
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                backgroundColor: '#f9f9f9',
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease-in-out',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              {service}
+            </button>
+          ))}
+        </div>
 
         <h4>In the following locations:</h4>
         <ul id="city-list">

@@ -150,7 +150,10 @@ function DeskFooterComp({ children }) {
               <Phone size={20} style={{ marginRight: '5px' }} />
               <span style={{ fontWeight: 'bold' }}>Call Us</span>
             </div>
-            <p style={{ margin: 0 }}>+1 (123) 456-7890</p>
+            <a href="tel:+11234567890" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <p style={{ margin: 0 }}>+1 (123) 456-7890</p>
+            </a>
+
           </div>
         </div>
         {/* Right section */}
@@ -187,7 +190,7 @@ function DeskFooterComp({ children }) {
       {/* Email Form */}
       {showEmailForm && (
   <>
-    {/* Dark Overlay */}
+    {/* Focus Overlay */}
     <div
       style={{
         position: 'fixed',
@@ -202,116 +205,121 @@ function DeskFooterComp({ children }) {
     ></div>
     {/* Email Form */}
     <div
-      ref={emailFormRef}
+  ref={emailFormRef}
+  style={{
+    position: 'fixed',
+    top: '50%', // Center vertically
+    left: '50%', // Center horizontally
+    transform: 'translate(-50%, -50%)', // Adjust for exact centering
+    width: '90%', // Adjust width to fit content properly, make it more responsive
+    maxWidth: '600px', // Ensure max width for larger screens
+    backgroundColor: '#fff',
+    padding: '20px',
+    boxSizing: 'border-box', // Ensure padding is included in the element's total width
+    boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
+    color: '#004AAD',
+    borderRadius: '10px',
+    fontFamily: 'Poppins, sans-serif', // Set font to match the page
+    zIndex: 1000, // Above the dark overlay
+  }}
+>
+  <h2 style={{ textAlign: 'center', fontFamily: 'Poppins, sans-serif' }}>Email Us</h2>
+  
+  <p style={{ textAlign: 'center', fontSize: '1em', color: '#333', fontFamily: 'Poppins, sans-serif' }}>
+    <span
+      onClick={() => {
+        navigator.clipboard.writeText('airprofessionalsolutions@gmail.com'); // Copy email to clipboard
+      }}
       style={{
-        position: 'fixed',
-        top: '50%', // Center vertically
-        left: '50%', // Center horizontally
-        transform: 'translate(-50%, -50%)', // Adjust for exact centering
-        width: '90%', // Adjust width to fit content properly, make it more responsive
-        maxWidth: '600px', // Ensure max width for larger screens
-        backgroundColor: '#fff',
-        padding: '20px',
-        boxSizing: 'border-box', // Ensure padding is included in the element's total width
-        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
         color: '#004AAD',
-        borderRadius: '10px',
-        zIndex: 1000, // Above the dark overlay
+        cursor: 'pointer',
+        textDecoration: 'underline', // Add underline to indicate it's clickable
+        marginLeft: '5px',
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.cursor = 'copy'; // Change cursor to "copy" on hover
       }}
     >
-      <h2 style={{ textAlign: 'center' }}>Email Us</h2>
+      airprofessionalsolutions@gmail.com
+    </span>
+  </p>
 
-      {/* Display the email with hover effect */}
-      <p style={{ textAlign: 'center', fontSize: '1em', color: '#333' }}>
-        <span
-          onClick={() => {
-            navigator.clipboard.writeText('airprofessionalsolutions@gmail.com'); // Copy email to clipboard
-          }}
-          style={{
-            color: '#004AAD',
-            cursor: 'pointer',
-            textDecoration: 'underline', // Add underline to indicate it's clickable
-            marginLeft: '5px',
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.cursor = 'copy'; // Change cursor to "copy" on hover
-          }}
-        >
-          airprofessionalsolutions@gmail.com
-        </span>
-      </p>
+  <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} onSubmit={sendEmail}>
+    <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+      Name:
+      <input
+        type="text"
+        name="name"
+        value={formData.name} // Bind input value to state
+        onChange={handleInputChange} // Update state on input change
+        placeholder="Your name"
+        style={{
+          width: '100%', // Ensure input takes full width of the form
+          padding: '10px',
+          borderRadius: '5px',
+          border: '1px solid #ccc',
+          boxSizing: 'border-box', // Include padding inside the element
+          fontFamily: 'Poppins, sans-serif', // Set font to match the page
+        }}
+        required
+      />
+    </label>
+    <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+      Email:
+      <input
+        type="email"
+        name="email"
+        value={formData.email} // Bind input value to state
+        onChange={handleInputChange} // Update state on input change
+        placeholder="Your email"
+        style={{
+          width: '100%', // Ensure input takes full width of the form
+          padding: '10px',
+          borderRadius: '5px',
+          border: '1px solid #ccc',
+          boxSizing: 'border-box', // Include padding inside the element
+          fontFamily: 'Poppins, sans-serif', // Set font to match the page
+        }}
+        required
+      />
+    </label>
+    <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+      Message:
+      <textarea
+        name="message"
+        value={formData.message} // Bind input value to state
+        onChange={handleInputChange} // Update state on input change
+        placeholder="Your message"
+        style={{
+          width: '100%', // Ensure textarea takes full width of the form
+          padding: '10px',
+          borderRadius: '5px',
+          border: '1px solid #ccc',
+          boxSizing: 'border-box', // Include padding inside the element
+          minHeight: '100px', // Add some height for better visibility
+          fontFamily: 'Poppins, sans-serif', // Set font to match the page
+        }}
+        required
+      ></textarea>
+    </label>
+    <button
+      type="submit"
+      style={{
+        backgroundColor: '#004AAD',
+        color: 'white',
+        padding: '10px',
+        borderRadius: '5px',
+        border: 'none',
+        cursor: 'pointer',
+        width: '100%', // Make button full width for consistent look
+        fontFamily: 'Poppins, sans-serif', // Set font to match the page
+      }}
+    >
+      Send Message
+    </button>
+  </form>
+</div>
 
-      <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} onSubmit={sendEmail}>
-        <label style={{ width: '100%' }}>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name} // Bind input value to state
-            onChange={handleInputChange} // Update state on input change
-            placeholder="Your name"
-            style={{
-              width: '100%', // Ensure input takes full width of the form
-              padding: '10px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              boxSizing: 'border-box', // Include padding inside the element
-            }}
-            required
-          />
-        </label>
-        <label style={{ width: '100%' }}>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email} // Bind input value to state
-            onChange={handleInputChange} // Update state on input change
-            placeholder="Your email"
-            style={{
-              width: '100%', // Ensure input takes full width of the form
-              padding: '10px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              boxSizing: 'border-box', // Include padding inside the element
-            }}
-            required
-          />
-        </label>
-        <label style={{ width: '100%' }}>
-          Message:
-          <textarea
-            name="message"
-            value={formData.message} // Bind input value to state
-            onChange={handleInputChange} // Update state on input change
-            placeholder="Your message"
-            style={{
-              width: '100%', // Ensure textarea takes full width of the form
-              padding: '10px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              boxSizing: 'border-box', // Include padding inside the element
-              minHeight: '100px', // Add some height for better visibility
-            }}
-            required
-          ></textarea>
-        </label>
-        <button
-          type="submit"
-          style={{
-            backgroundColor: '#004AAD',
-            color: 'white',
-            padding: '10px',
-            borderRadius: '5px',
-            border: 'none',
-            cursor: 'pointer',
-            width: '100%', // Make button full width for consistent look
-          }}
-        >
-          Send Message
-        </button>
-      </form>
-    </div>
   </>
 )}
     </div>

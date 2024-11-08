@@ -24,31 +24,31 @@ function Services({ selectedService }) {
     {
       name: 'Furnace & AC Replacement',
       category: 'Homeowners',
-      content: 'Details about Furnace & AC Replacement...',
+      content: 'This service involves replacing old or broken heating and cooling units in your home. It includes removing the outdated furnace or AC, installing a new, efficient model, and ensuring it works effectively to keep your home at a comfortable temperature.',
       image: 'Furnace.jpg',
     },
     {
       name: 'HVAC Systems Installation',
       category: 'Contractors',
-      content: 'Details about HVAC Systems Installation...',
+      content: 'HVAC system installation is the setup of a new heating, ventilation, and air conditioning system. This service covers choosing the right equipment, installing ducts, units, and vents, and making sure everything works together to keep your home comfortable year-round.',
       image: '',
     },
     {
       name: 'Refrigeration Leak Repair',
       category: 'Homeowners',
-      content: 'Details about Refrigeration Leak Repair...',
+      content: 'Refrigeration leak repair addresses leaks in refrigerators or cooling systems. A technician will find the source of the leak, fix any damaged parts, and test the system to ensure it’s sealed and keeps your food or supplies at the right temperature.',
       image: '',
     },
     {
       name: 'Refrigeration Refills',
       category: 'Contractors',
-      content: 'Details about Refrigeration Refills...',
+      content: 'This service involves adding refrigerant to a cooling system, like a fridge or freezer, to ensure it operates properly. Low refrigerant levels can prevent the system from cooling effectively, so a refill helps maintain the correct temperature and efficiency.',
       image: '',
     },
     {
       name: 'Minisplit and Heat Pump Installation and Repairs',
       category: 'Homeowners',
-      content: 'Details about Minisplit and Heat Pump Installation and Repairs...',
+      content: 'Minisplit and heat pump installation and repair covers the setup, maintenance, or repair of these efficient heating and cooling systems. Technicians can install new units, make repairs to existing ones, and ensure they work efficiently to both heat and cool specific areas of your home.',
       image: '',
     },
   ];
@@ -102,28 +102,37 @@ function Services({ selectedService }) {
       </div>
 
       <div className="filtered-services" style={{ width: '100%' }}>
-        {filteredServices.length > 0 ? (
-          filteredServices.map((service) => (
-            <section key={service.name} ref={sections[service.name]} className="service-section" style={{ margin: '0 0 20px', width: '100%' }}>
-              <h3>{service.name}</h3>
-              {service.image && (
-                <img 
-                  src={service.image} 
-                  alt={service.name} 
-                  style={{ 
-                    width: '100%', 
-                    objectFit: 'contain',
-                    marginBottom: '10px' 
-                  }} 
-                />
-              )}
-              <p>{service.content}</p>
-            </section>
-          ))
-        ) : (
-          <p>No services match your filter criteria.</p>
+  {filteredServices.length > 0 ? (
+    filteredServices.map((service) => (
+      <section
+        key={service.name}
+        ref={sections[service.name]}
+        className="service-section"
+        style={{
+          marginBottom: '100px', // Adds vertical space between each service section
+          width: '100%',
+        }}
+      >
+        <h3>{service.name}</h3>
+        {service.image && (
+          <img
+            src={service.image}
+            alt={service.name}
+            style={{
+              width: '100%',
+              objectFit: 'contain',
+              marginBottom: '10px',
+            }}
+          />
         )}
-      </div>
+        <p>{service.content}</p>
+      </section>
+    ))
+  ) : (
+    <p>No services match your filter criteria.</p>
+  )}
+</div>
+
     </div>
   );
 }

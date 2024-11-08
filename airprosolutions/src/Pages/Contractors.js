@@ -48,10 +48,32 @@ function ContractorPage({ title, children }) {
         We work with trusted vendors and suppliers to ensure you're getting high-quality HVAC systems and components. Some of our key partners include:
       </p>
       <ul>
-        <li>Carrier</li>
-        <li>Trane</li>
-        <li>Daikin</li>
-        <li>Lennox</li>
+      <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+  <li>
+    <a href="https://bryant.com" style={{ color: 'inherit', textDecoration: 'none' }}>Bryant</a>
+  </li>
+  <li>
+    <a href="https://carrier.com" style={{ color: 'inherit', textDecoration: 'none' }}>Carrier</a>
+  </li>
+  <li>
+    <a href="https://reznorhvac.com" style={{ color: 'inherit', textDecoration: 'none' }}>Reznor</a>
+  </li>
+  <li>
+    <a href="https://ecobee.com" style={{ color: 'inherit', textDecoration: 'none' }}>Ecobee</a>
+  </li>
+  <li>
+    <a href="https://nest.com" style={{ color: 'inherit', textDecoration: 'none' }}>Nest</a>
+  </li>
+  <li>
+    <a href="https://honeywell.com" style={{ color: 'inherit', textDecoration: 'none' }}>Honeywell</a>
+  </li>
+  <li>
+    <a href="https://mountainlandsupply.com" style={{ color: 'inherit', textDecoration: 'none' }}>Mountainland Supply</a>
+  </li>
+</ul>
+
+
+
       </ul>
 
       <h3 id="regulations-section">Compliance with Utah Regulations</h3>
