@@ -1,12 +1,27 @@
-// components/PageTemplate.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ContractorPage({ title, children }) {
+  const navigate = useNavigate();
+
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const navigateToServicesPage = () => {
+    // Pass the selected category and filter data as part of the state
+    navigate(`/services/Contractors`, {
+      state: {
+        selectedCategory: 'Contractors',
+        filters: {
+          Homeowners: false,
+          Contractors: true,
+        },
+      },
+    });
   };
 
   return (
@@ -47,33 +62,14 @@ function ContractorPage({ title, children }) {
       <p>
         We work with trusted vendors and suppliers to ensure you're getting high-quality HVAC systems and components. Some of our key partners include:
       </p>
-      <ul>
       <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
-  <li>
-    <a href="https://bryant.com" style={{ color: 'inherit', textDecoration: 'none' }}>Bryant</a>
-  </li>
-  <li>
-    <a href="https://carrier.com" style={{ color: 'inherit', textDecoration: 'none' }}>Carrier</a>
-  </li>
-  <li>
-    <a href="https://reznorhvac.com" style={{ color: 'inherit', textDecoration: 'none' }}>Reznor</a>
-  </li>
-  <li>
-    <a href="https://ecobee.com" style={{ color: 'inherit', textDecoration: 'none' }}>Ecobee</a>
-  </li>
-  <li>
-    <a href="https://nest.com" style={{ color: 'inherit', textDecoration: 'none' }}>Nest</a>
-  </li>
-  <li>
-    <a href="https://honeywell.com" style={{ color: 'inherit', textDecoration: 'none' }}>Honeywell</a>
-  </li>
-  <li>
-    <a href="https://mountainlandsupply.com" style={{ color: 'inherit', textDecoration: 'none' }}>Mountainland Supply</a>
-  </li>
-</ul>
-
-
-
+        <li>Bryant</li>
+        <li>Carrier</li>
+        <li>Reznor</li>
+        <li>Ecobee</li>
+        <li>Nest</li>
+        <li>Honeywell</li>
+        <li>Mountainland Supply</li>
       </ul>
 
       <h3 id="regulations-section">Compliance with Utah Regulations</h3>
@@ -93,6 +89,28 @@ function ContractorPage({ title, children }) {
       <p>
         For more information or to get started on your HVAC project, reach out via phone or use our online form.
       </p>
+
+      {/* Add navigation link to Services page with Contractors as a parameter */}
+      <div style={{ marginTop: '40px' }}>
+        <button 
+          onClick={navigateToServicesPage}
+          style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
+        >
+          View Services for Contractors
+        </button>
+      </div>
+
+      {/* Services-related content moved to bottom */}
+      <div style={{ marginTop: '60px' }}>
+        <h3>Services Offered for Contractors</h3>
+        <ul>
+          <li>Furnace & AC Installation</li>
+          <li>Minisplit & Heat Pump Installation</li>
+          <li>Central Air Systems</li>
+          <li>Thermostat & Smart Home Integrations</li>
+          <li>Ductwork Installation & Optimization</li>
+        </ul>
+      </div>
     </div>
   );
 }

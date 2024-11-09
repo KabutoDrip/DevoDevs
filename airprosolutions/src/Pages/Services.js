@@ -1,6 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Services({ selectedService }) {
+function Services() {
+  const location = useLocation();
+
+  // Initialize filters based on location state (if available)
+  const [filters, setFilters] = useState({
+    Homeowners: true, // Default is to show Homeowners
+    Contractors: true, // Default is to show Contractors (when coming from the home page)
+  });
+
+  // Set filters based on navigation state
+  useEffect(() => {
+    if (location.state?.selectedCategory === 'Contractors') {
+      // If we came from the Contractors page, only select Contractors
+      setFilters({
+        Homeowners: false,
+        Contractors: true,
+      });
+    } else {
+      // Default to both selected when no state or from the Home page
+      setFilters({
+        Homeowners: true,
+        Contractors: true,
+      });
+    }
+  }, [location.state]);
+
+  // Initialize refs for sections
   const sections = {
     'Furnace & AC Replacement': useRef(null),
     'HVAC Systems Installation': useRef(null),
@@ -8,17 +35,6 @@ function Services({ selectedService }) {
     'Refrigeration Refills': useRef(null),
     'Minisplit and Heat Pump Installation and Repairs': useRef(null),
   };
-
-  const [filters, setFilters] = useState({
-    Homeowners: true,
-    Contractors: true,
-  });
-
-  useEffect(() => {
-    if (selectedService && sections[selectedService]) {
-      sections[selectedService].current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [selectedService]);
 
   const services = [
     {
@@ -53,6 +69,7 @@ function Services({ selectedService }) {
     },
   ];
 
+  // Filter services based on the selected categories
   const filteredServices = services.filter((service) => {
     return filters[service.category];
   });
@@ -66,15 +83,15 @@ function Services({ selectedService }) {
 
   return (
     <div className="services-container" style={{ fontFamily: 'Poppins, sans-serif', width: '100%', boxSizing: 'border-box' }}>
-      <div className="services-header" style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
+      <div className="services-header" style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginBottom: '20px',
         backgroundColor: 'orange',
         marginLeft: '-20px',
         marginRight: '-20px',
-        padding: '20px'
+        padding: '20px',
       }}>
         <h2 style={{ margin: 0, fontSize: '1.8em' }}>Our Services</h2>
 
@@ -105,7 +122,7 @@ function Services({ selectedService }) {
           filteredServices.map((service, index) => (
             <section
               key={service.name}
-              ref={sections[service.name]}
+              ref={sections[service.name]} // Apply the ref for each service
               className="service-section"
               style={{
                 display: 'flex',
