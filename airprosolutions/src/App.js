@@ -10,6 +10,7 @@ import HomeownerPage from './Pages/Homeowners';
 import HelpPage from './Pages/Help';
 import HiringPage from './Pages/Hiring';
 import ContractorPage from './Pages/Contractors';
+import Services from './Pages/Services'; // Import Services component
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -38,6 +39,7 @@ function App() {
               <Route path="/homeowners" element={<HomeownerPage />} />
               <Route path="/join" element={<HiringPage />} />
               <Route path="/help" element={<HelpPage />} />
+              <Route path="/services/:service" element={<Services />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="*" element={<Navigate replace to="/home" />} />
             </Routes>
@@ -51,6 +53,7 @@ function App() {
               <Route path="/homeowners" element={<HomeownerPage />} />
               <Route path="/join" element={<HiringPage />} />
               <Route path="/help" element={<HelpPage />} />
+              <Route path="/services/:service" element={<Services />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="*" element={<Navigate replace to="/home" />} />
             </Route>

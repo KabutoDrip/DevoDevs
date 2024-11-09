@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Services from './Services'; // Import the Services component
+import { useNavigate } from 'react-router-dom';
 
 function HomePage({ title }) {
+  const navigate = useNavigate();
   const [cities, setCities] = useState([
     { name: 'Brian Head', lat: 37.6925, lon: -112.8486 },
     { name: 'Cedar City', lat: 37.6775, lon: -113.0619 },
@@ -11,8 +12,9 @@ function HomePage({ title }) {
     { name: 'St. George', lat: 37.0965, lon: -113.5684 }
   ]);
 
-  const [selectedService, setSelectedService] = useState(null); // Manage selected service
-
+  const handleServiceClick = (service) => {
+    navigate(`/services/${service}`);  // Navigate to the Services page with the selected service
+  };
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const toRadians = (degrees) => degrees * Math.PI / 180;
     const R = 6371;
@@ -58,14 +60,6 @@ function HomePage({ title }) {
       sortCitiesAlphabetically();
     }
   }, []);
-
-  const handleServiceClick = (service) => {
-    setSelectedService(service);
-  };
-
-  if (selectedService) {
-    return <Services selectedService={selectedService} />;
-  }
 
   return (
     <div style={{ fontFamily: 'Poppins, sans-serif', padding: '20px' }}>

@@ -108,7 +108,7 @@ function HeaderComp() {
       ) : (
         <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
           <div className="logo">
-            <img src="Ico.webp" alt="Logo" style={{ height: '10vh' }} />
+            <img src="/Ico.webp" alt="Logo" style={{ height: '10vh' }} />
           </div>
           <nav className="nav-menu" style={{ flexGrow: 1, marginLeft: '20px' }}>
             <ul style={{ listStyleType: 'none', display: 'flex', margin: 0, padding: 0, width: '100%', fontFamily: 'Poppins, sans-serif' }}>

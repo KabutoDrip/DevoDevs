@@ -25,7 +25,7 @@ function Services({ selectedService }) {
       name: 'Furnace & AC Replacement',
       category: 'Homeowners',
       content: 'This service involves replacing old or broken heating and cooling units in your home. It includes removing the outdated furnace or AC, installing a new, efficient model, and ensuring it works effectively to keep your home at a comfortable temperature.',
-      image: 'Furnace.jpg',
+      image: '/Furnace.jpg',
     },
     {
       name: 'HVAC Systems Installation',
