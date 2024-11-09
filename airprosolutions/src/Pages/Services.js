@@ -10,8 +10,8 @@ function Services({ selectedService }) {
   };
 
   const [filters, setFilters] = useState({
-    Homeowners: true,  // Default: checked
-    Contractors: true, // Default: checked
+    Homeowners: true,
+    Contractors: true,
   });
 
   useEffect(() => {
@@ -66,7 +66,6 @@ function Services({ selectedService }) {
 
   return (
     <div className="services-container" style={{ fontFamily: 'Poppins, sans-serif', width: '100%', boxSizing: 'border-box' }}>
-      {/* Added margin-left: -20px and margin-right: -20px to extend past padding */}
       <div className="services-header" style={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
@@ -77,10 +76,10 @@ function Services({ selectedService }) {
         marginRight: '-20px',
         padding: '20px'
       }}>
-        <h2 style={{ margin: 0 }}>Our Services</h2>
+        <h2 style={{ margin: 0, fontSize: '1.8em' }}>Our Services</h2>
 
         <div className="filter-checkboxes">
-          <label style={{ display: 'inline-flex', alignItems: 'center', marginRight: '20px' }}>
+          <label style={{ display: 'inline-flex', alignItems: 'center', marginRight: '20px', fontSize: '1.2em' }}>
             <input
               type="checkbox"
               checked={filters.Homeowners}
@@ -89,7 +88,7 @@ function Services({ selectedService }) {
             />
             Homeowners
           </label>
-          <label style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <label style={{ display: 'inline-flex', alignItems: 'center', fontSize: '1.2em' }}>
             <input
               type="checkbox"
               checked={filters.Contractors}
@@ -102,37 +101,43 @@ function Services({ selectedService }) {
       </div>
 
       <div className="filtered-services" style={{ width: '100%' }}>
-  {filteredServices.length > 0 ? (
-    filteredServices.map((service) => (
-      <section
-        key={service.name}
-        ref={sections[service.name]}
-        className="service-section"
-        style={{
-          marginBottom: '100px', // Adds vertical space between each service section
-          width: '100%',
-        }}
-      >
-        <h3>{service.name}</h3>
-        {service.image && (
-          <img
-            src={service.image}
-            alt={service.name}
-            style={{
-              width: '100%',
-              objectFit: 'contain',
-              marginBottom: '10px',
-            }}
-          />
+        {filteredServices.length > 0 ? (
+          filteredServices.map((service, index) => (
+            <section
+              key={service.name}
+              ref={sections[service.name]}
+              className="service-section"
+              style={{
+                display: 'flex',
+                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+                alignItems: 'center',
+                marginBottom: '100px',
+                width: '100%',
+              }}
+            >
+              {service.image && (
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  style={{
+                    width: '50%',
+                    maxHeight: '50vh',
+                    objectFit: 'cover',
+                    marginRight: index % 2 === 0 ? '20px' : '0',
+                    marginLeft: index % 2 !== 0 ? '20px' : '0',
+                  }}
+                />
+              )}
+              <div style={{ width: '50%', fontSize: '1.2em' }}>
+                <h3 style={{ fontSize: '1.5em' }}>{service.name}</h3>
+                <p>{service.content}</p>
+              </div>
+            </section>
+          ))
+        ) : (
+          <p style={{ fontSize: '1.2em' }}>No services match your filter criteria.</p>
         )}
-        <p>{service.content}</p>
-      </section>
-    ))
-  ) : (
-    <p>No services match your filter criteria.</p>
-  )}
-</div>
-
+      </div>
     </div>
   );
 }
