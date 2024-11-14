@@ -49,7 +49,7 @@ function HomeownerPage({ title, children }) {
             onClick={navigateToServicesPage}
             style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
           >
-            View Services for Homeowners
+            About Services
           </button>
 
           {/* Elfsight widget container */}

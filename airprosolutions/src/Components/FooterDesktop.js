@@ -134,6 +134,8 @@ function DeskFooterComp({ children }) {
             display: 'flex',
             justifyContent: 'center', // Centers the content in the available space
             alignItems: 'center',
+            position: 'absolute',
+            left: 0,
           }}
         >
           <div
@@ -164,6 +166,8 @@ function DeskFooterComp({ children }) {
             justifyContent: 'center', // Centers the content in the available space
             alignItems: 'center',
             cursor: 'pointer', // Makes the right section clickable
+            position: 'absolute',
+            right: 0,
           }}
           onClick={handleEmailClick} // Toggle email form on click
         >
