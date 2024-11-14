@@ -26,21 +26,9 @@ function ContractorPage({ title, children }) {
 
   return (
     <div style={{ fontFamily: 'Poppins, sans-serif', padding: '20px' }}>
-      <h2>HVAC Installation Services</h2>
+      <h1>Contractors</h1>
       
-      <p>
-        We offer comprehensive HVAC installation services in Southern Utah. Our team specializes in installing high-efficiency heating and cooling systems tailored to your specific needs, whether for new construction or system replacements.
-      </p>
-
-      <h3>Installation Offerings</h3>
-      <ul>
-        <li>Furnace & AC Installation</li>
-        <li>Minisplit & Heat Pump Installation</li>
-        <li>Central Air Systems</li>
-        <li>Thermostat & Smart Home Integrations</li>
-        <li>Ductwork Installation & Optimization</li>
-      </ul>
-
+     
       <button 
         onClick={() => scrollToSection('quote-section')}
         style={{ backgroundColor: '#007BFF', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
@@ -85,22 +73,8 @@ function ContractorPage({ title, children }) {
         <li>Comprehensive warranties</li>
       </ul>
 
-      <h3>Contact Us</h3>
-      <p>
-        For more information or to get started on your HVAC project, reach out via phone or use our online form.
-      </p>
+      
 
-      {/* Add navigation link to Services page with Contractors as a parameter */}
-      <div style={{ marginTop: '40px' }}>
-        <button 
-          onClick={navigateToServicesPage}
-          style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
-        >
-          View Services for Contractors
-        </button>
-      </div>
-
-      {/* Services-related content moved to bottom */}
       <div style={{ marginTop: '60px' }}>
         <h3>Services Offered for Contractors</h3>
         <ul>
@@ -111,7 +85,21 @@ function ContractorPage({ title, children }) {
           <li>Ductwork Installation & Optimization</li>
         </ul>
       </div>
+      <div style={{ marginTop: '40px' }}>
+        <button 
+          onClick={navigateToServicesPage}
+          style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
+        >
+          View Services for Contractors
+        </button>
+      </div>  
+      <h3>Contact Us</h3>
+      <p>
+        For more information or to get started on your HVAC project, reach out via phone or use our online form.
+      </p>
+          
     </div>
+    
   );
 }
 

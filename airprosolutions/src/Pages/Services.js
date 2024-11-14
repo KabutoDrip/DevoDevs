@@ -18,6 +18,13 @@ function Services() {
         Homeowners: false,
         Contractors: true,
       });
+    }
+    if (location.state?.selectedCategory === 'Homeowners') {
+      // If we came from the Contractors page, only select Contractors
+      setFilters({
+        Homeowners: true,
+        Contractors: false,
+      });
     } else {
       // Default to both selected when no state or from the Home page
       setFilters({
