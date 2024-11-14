@@ -12,6 +12,20 @@ function HomePage({ title }) {
     { name: 'St. George', lat: 37.0965, lon: -113.5684 }
   ]);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const handleServiceClick = (service) => {
     navigate(`/services/${service}`);  // Navigate to the Services page with the selected service
   };
@@ -67,7 +81,7 @@ function HomePage({ title }) {
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           <img src="APS.jpg" alt="Air Professional Solutions" style={{ maxWidth: '100%', height: 'auto' }} />
         </div>
-        <h2>Southern Utah Heating and Cooling</h2>
+        <h2 style={{ textAlign: 'center' }}>Southern Utah Heating and Cooling</h2>
         <h3>Installation and Repairs</h3>
         
         <h4>Providing the following services:</h4>
@@ -81,7 +95,8 @@ function HomePage({ title }) {
                 fontSize: '16px',
                 border: '1px solid #ccc',
                 borderRadius: '5px',
-                backgroundColor: '#f9f9f9',
+                backgroundColor: isMobile ? '#004bad ' : '#f9f9f9',
+                color: isMobile ? '#fff' : '#000',
                 cursor: 'pointer',
                 transition: 'transform 0.2s ease-in-out',
               }}
@@ -98,9 +113,16 @@ function HomePage({ title }) {
         </div>
 
         <h4>In the following locations:</h4>
-        <ul id="city-list">
+        <ul id="city-list" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', 
+          gap: '10px',
+          justifyContent: isMobile ? 'center' : 'start',
+          textAlign: isMobile ? 'center' : 'left',
+          fontSize: '18px'
+        }}>
           {cities.map((city) => (
-            <li key={city.name}>{city.name}</li>
+            <li key={city.name} style={{ listStyle: 'none' }}>{city.name}</li>
           ))}
         </ul>
       </div>

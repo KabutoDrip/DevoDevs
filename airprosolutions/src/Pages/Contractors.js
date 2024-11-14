@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import EmailForm from '../Components/EmailForm'; // Import the EmailForm component
 
 function ContractorPage({ title, children }) {
   const navigate = useNavigate();
@@ -71,8 +72,6 @@ function ContractorPage({ title, children }) {
         <li>Comprehensive warranties</li>
       </ul>
 
-      
-
       <div style={{ marginTop: '60px' }}>
         <h3>Services Offered for Contractors</h3>
         <ul>
@@ -95,7 +94,7 @@ function ContractorPage({ title, children }) {
       <p>
         For more information or to get started on your HVAC project, reach out via phone or use our online form.
       </p>
-
+      <EmailForm onClose={() => {}} isPopup={false} inquiry="quote" /> {/* Render the EmailForm component with inquiry prop */}
     </div>
     
   );

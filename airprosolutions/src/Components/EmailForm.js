@@ -1,13 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
-function EmailForm({ isPopup = false, onClose }) {
-  const emailFormRef = useRef(null);
-  const [formData, setFormData] = React.useState({
+function EmailForm({ onClose, isPopup = false, inquiry }) {
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
+    inquiry: inquiry || '',
   });
+
+  const emailFormRef = useRef(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,141 +21,158 @@ function EmailForm({ isPopup = false, onClose }) {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .send('service_apstest', 'template_u70m8qs', formData, 'sDL2y5PHDSPl09T8n')
+
+    emailjs.send(
+      'service_apstest',
+      'template_u70m8qs',
+      formData,
+      'sDL2y5PHDSPl09T8n'
+    )
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
         setFormData({ name: '', email: '', message: '' });
-        onClose && onClose();
+        if (isPopup) {
+          onClose();
+        }
       })
       .catch((err) => {
         console.error('Failed to send email:', err);
       });
   };
 
+  const handleClickOutside = (event) => {
+    if (isPopup && emailFormRef.current && !emailFormRef.current.contains(event.target)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isPopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [isPopup]);
+
   return (
-    <>
-      {isPopup && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 999,
-            backdropFilter: 'blur(5px)',
+    <div
+      ref={emailFormRef}
+      style={{
+        ...(isPopup ? {
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 1000,
+        } : {}),
+        width: '90%',
+        maxWidth: '600px',
+        backgroundColor: '#fff',
+        padding: '20px',
+        boxSizing: 'border-box',
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
+        color: '#004AAD',
+        borderRadius: '10px',
+        fontFamily: 'Poppins, sans-serif',
+      }}
+    >
+      <h2 style={{ textAlign: 'center', fontFamily: 'Poppins, sans-serif' }}>
+        {inquiry === 'quote' ? 'Get A Quote' : 'Email Us'}
+      </h2>
+      <p style={{ textAlign: 'center', fontSize: '1em', color: '#333', fontFamily: 'Poppins, sans-serif' }}>
+        <span
+          onClick={() => {
+            navigator.clipboard.writeText('airprofessionalsolutions@gmail.com');
           }}
-        ></div>
-      )}
-      <div
-        ref={emailFormRef}
-        style={{
-          position: isPopup ? 'fixed' : 'static',
-          top: isPopup ? '50%' : 'auto',
-          left: isPopup ? '50%' : 'auto',
-          transform: isPopup ? 'translate(-50%, -50%)' : 'none',
-          width: '90%',
-          maxWidth: '600px',
-          backgroundColor: '#fff',
-          padding: '20px',
-          boxSizing: 'border-box',
-          boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
-          color: '#004AAD',
-          borderRadius: '10px',
-          fontFamily: 'Poppins, sans-serif',
-          zIndex: isPopup ? 1000 : 'auto',
-        }}
-      >
-        <h2 style={{ textAlign: 'center' }}>Email Us</h2>
-        <p style={{ textAlign: 'center', fontSize: '1em', color: '#333' }}>
-          <span
-            onClick={() => navigator.clipboard.writeText('airprofessionalsolutions@gmail.com')}
+          style={{
+            color: '#004AAD',
+            cursor: 'pointer',
+            textDecoration: 'underline',
+            marginLeft: '5px',
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.cursor = 'copy';
+          }}
+        >
+          airprofessionalsolutions@gmail.com
+        </span>
+      </p>
+      <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} onSubmit={sendEmail}>
+        <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+          {inquiry === 'quote' ? 'Business' : 'Name'}:
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder={inquiry === 'quote' ? 'Business name' : 'Your name'}
             style={{
-              color: '#004AAD',
-              cursor: 'pointer',
-              textDecoration: 'underline',
-              marginLeft: '5px',
-            }}
-            onMouseEnter={(e) => (e.target.style.cursor = 'copy')}
-          >
-            airprofessionalsolutions@gmail.com
-          </span>
-        </p>
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} onSubmit={sendEmail}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your name"
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '5px',
-                border: '1px solid #ccc',
-                fontFamily: 'Poppins, sans-serif',
-              }}
-              required
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Your email"
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '5px',
-                border: '1px solid #ccc',
-                fontFamily: 'Poppins, sans-serif',
-              }}
-              required
-            />
-          </label>
-          <label>
-            Message:
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder="Your message"
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '5px',
-                border: '1px solid #ccc',
-                minHeight: '100px',
-                fontFamily: 'Poppins, sans-serif',
-              }}
-              required
-            ></textarea>
-          </label>
-          <button
-            type="submit"
-            style={{
-              backgroundColor: '#004AAD',
-              color: 'white',
+              width: '100%',
               padding: '10px',
               borderRadius: '5px',
-              border: 'none',
-              cursor: 'pointer',
-              width: '100%',
+              border: '1px solid #ccc',
+              boxSizing: 'border-box',
               fontFamily: 'Poppins, sans-serif',
             }}
-          >
-            Send Message
-          </button>
-        </form>
-      </div>
-    </>
+            required
+          />
+        </label>
+        <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+          Email:
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="Your email"
+            style={{
+              width: '100%',
+              padding: '10px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              boxSizing: 'border-box',
+              fontFamily: 'Poppins, sans-serif',
+            }}
+            required
+          />
+        </label>
+        <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+          Message:
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleInputChange}
+            placeholder="Your message"
+            style={{
+              width: '100%',
+              padding: '10px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              boxSizing: 'border-box',
+              minHeight: '100px',
+              fontFamily: 'Poppins, sans-serif',
+            }}
+            required
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#004AAD',
+            color: 'white',
+            padding: '10px',
+            borderRadius: '5px',
+            border: 'none',
+            cursor: 'pointer',
+            width: '100%',
+            fontFamily: 'Poppins, sans-serif',
+          }}
+        >
+          {inquiry === 'quote' ? 'Get Quote' : 'Send Message'}
+        </button>
+      </form>
+    </div>
   );
 }
 

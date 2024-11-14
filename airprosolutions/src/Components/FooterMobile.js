@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 function FooterComp() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [contOpen, setContOpen] = useState(false);
   const [showContent, setShowContent] = useState(false); // New state to control the appearance of content
 
   // Function to handle screen resize and set the state
   const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setIsMobile(true); // Mobile layout if screen is 768px or less
-    } else {
-      setIsMobile(false); // Desktop layout otherwise
-    }
+    setIsMobile(window.innerWidth <= 768);
   };
 
   const toggleCont = () => {

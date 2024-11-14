@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import EmailForm from '../Components/EmailForm'; // Import the EmailForm component
 
 function HomeownerPage({ title, children }) {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ function HomeownerPage({ title, children }) {
           </div>
         </div>
       </div>
+      <EmailForm onClose={() => {}} isPopup={false} /> {/* Render the EmailForm component */}
     </div>
   );
 }
