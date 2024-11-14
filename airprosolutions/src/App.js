@@ -7,7 +7,7 @@ import DeskFooterComp from './Components/FooterDesktop';
 import HeaderComp from './Components/Header';
 import HomePage from './Pages/Home';
 import HomeownerPage from './Pages/Homeowners';
-import HelpPage from './Pages/Help';
+import FAQ from './Pages/FAQ';
 import HiringPage from './Pages/Hiring';
 import ContractorPage from './Pages/Contractors';
 import Services from './Pages/Services'; // Import Services component
@@ -38,7 +38,7 @@ function App() {
               <Route path="/contractors" element={<ContractorPage />} />
               <Route path="/homeowners" element={<HomeownerPage />} />
               <Route path="/join" element={<HiringPage />} />
-              <Route path="/help" element={<HelpPage />} />
+              <Route path="/FAQ" element={<FAQ />} />
               <Route path="/services/:service" element={<Services />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="*" element={<Navigate replace to="/home" />} />
@@ -52,7 +52,7 @@ function App() {
               <Route path="/contractors" element={<ContractorPage />} />
               <Route path="/homeowners" element={<HomeownerPage />} />
               <Route path="/join" element={<HiringPage />} />
-              <Route path="/help" element={<HelpPage />} />
+              <Route path="/FAQ" element={<FAQ />} />
               <Route path="/services/:service" element={<Services />} />
               <Route path="/" element={<Navigate replace to="/home" />} />
               <Route path="*" element={<Navigate replace to="/home" />} />

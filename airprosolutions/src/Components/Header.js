@@ -99,7 +99,7 @@ function HeaderComp() {
                   <li><Link to="/contractors">Contractors</Link></li>
                   <li><Link to="/homeowners">Homeowners</Link></li>
                   <li><Link to="/join">Join Our Team</Link></li>
-                  <li><Link to="/help">Help</Link></li>
+                  <li><Link to="/FAQ">FAQ</Link></li>
                 </ul>
               </div>
             </>
@@ -133,8 +133,8 @@ function HeaderComp() {
                 </Link>
               </li>
               <li style={{ flexGrow: 1 }}>
-                <Link to="/help" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
-                  Help
+                <Link to="/FAQ" style={{ textDecoration: 'none', color: '#333', fontWeight: 'bold', display: 'block', textAlign: 'center', transition: 'color 0.3s' }}>
+                  FAQ
                 </Link>
               </li>
             </ul>

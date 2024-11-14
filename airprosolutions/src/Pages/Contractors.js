@@ -28,18 +28,16 @@ function ContractorPage({ title, children }) {
     <div style={{ fontFamily: 'Poppins, sans-serif', padding: '20px' }}>
       <h1>Contractors</h1>
       
-     
+      <h3 id="quote-section" style={{ marginTop: '40px' }}>Get a Quote</h3>
+      <p>
+        Ready for a new HVAC system? Contact us today for a free, no-obligation quote! Simply click the button above or fill out our contact form to get started.
+      </p>
       <button 
         onClick={() => scrollToSection('quote-section')}
         style={{ backgroundColor: '#007BFF', color: 'white', padding: '10px 20px', border: 'none', cursor: 'pointer' }}
       >
         Get a Quote
       </button>
-
-      <h3 id="quote-section" style={{ marginTop: '40px' }}>Get a Quote</h3>
-      <p>
-        Ready for a new HVAC system? Contact us today for a free, no-obligation quote! Simply click the button above or fill out our contact form to get started.
-      </p>
 
       <h3 id="warranty-section">Installation Warranty</h3>
       <p>
@@ -97,7 +95,7 @@ function ContractorPage({ title, children }) {
       <p>
         For more information or to get started on your HVAC project, reach out via phone or use our online form.
       </p>
-          
+
     </div>
     
   );
