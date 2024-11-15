@@ -142,7 +142,7 @@ function DeskFooterComp({ children }) {
           </div>
         </div>
       </footer>
-      {showEmailForm && <EmailForm onClose={() => setShowEmailForm(false)} isPopup={true} />}
+      {showEmailForm && <EmailForm onClose={() => setShowEmailForm(false)} isPopup={true} inquiry="footer" />} {/* Render the EmailForm component with inquiry prop */}
     </div>
   );
 }

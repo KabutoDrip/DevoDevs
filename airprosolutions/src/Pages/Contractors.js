@@ -94,7 +94,7 @@ function ContractorPage({ title, children }) {
       <p>
         For more information or to get started on your HVAC project, reach out via phone or use our online form.
       </p>
-      <EmailForm onClose={() => {}} isPopup={false} inquiry="quote" /> {/* Render the EmailForm component with inquiry prop */}
+      <EmailForm onClose={() => {}} isPopup={false} inquiry="contractors" /> {/* Render the EmailForm component with inquiry prop */}
     </div>
     
   );

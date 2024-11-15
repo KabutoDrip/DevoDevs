@@ -3,9 +3,12 @@ import emailjs from 'emailjs-com';
 
 function EmailForm({ onClose, isPopup = false, inquiry }) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    from_email: '',
+    from_phone: '',
     message: '',
+    service_type: '',
+    service_type_extended: '',
     inquiry: inquiry || '',
   });
 
@@ -22,15 +25,42 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    let serviceType = '';
+    let serviceTypeExtended = '';
+
+    switch (inquiry) {
+      case 'homeowners':
+      case 'contractors':
+        serviceType = 'Requested a Quote';
+        serviceTypeExtended = 'has requested a quote with the following message';
+        break;
+      case 'footer':
+        serviceType = 'Has A Question';
+        serviceTypeExtended = 'has the following inquiry';
+        break;
+      case 'hiring':
+        serviceType = 'Is Interested In A Job';
+        serviceTypeExtended = 'is interested in a job, here is their inquiry';
+        break;
+      default:
+        break;
+    }
+
+    const emailData = {
+      ...formData,
+      service_type: serviceType,
+      service_type_extended: serviceTypeExtended,
+    };
+
     emailjs.send(
       'service_apstest',
       'template_u70m8qs',
-      formData,
+      emailData,
       'sDL2y5PHDSPl09T8n'
     )
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ from_name: '', from_email: '', from_phone: '', message: '', service_type: '', service_type_extended: '' });
         if (isPopup) {
           onClose();
         }
@@ -103,8 +133,8 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
           {inquiry === 'quote' ? 'Business' : 'Name'}:
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="from_name"
+            value={formData.from_name}
             onChange={handleInputChange}
             placeholder={inquiry === 'quote' ? 'Business name' : 'Your name'}
             style={{
@@ -122,10 +152,29 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
           Email:
           <input
             type="email"
-            name="email"
-            value={formData.email}
+            name="from_email"
+            value={formData.from_email}
             onChange={handleInputChange}
             placeholder="Your email"
+            style={{
+              width: '100%',
+              padding: '10px',
+              borderRadius: '5px',
+              border: '1px solid #ccc',
+              boxSizing: 'border-box',
+              fontFamily: 'Poppins, sans-serif',
+            }}
+            required
+          />
+        </label>
+        <label style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+          Phone:
+          <input
+            type="text"
+            name="from_phone"
+            value={formData.from_phone}
+            onChange={handleInputChange}
+            placeholder="Your phone number"
             style={{
               width: '100%',
               padding: '10px',

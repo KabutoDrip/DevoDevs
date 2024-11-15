@@ -59,7 +59,7 @@ function HomeownerPage({ title, children }) {
           </div>
         </div>
       </div>
-      <EmailForm onClose={() => {}} isPopup={false} /> {/* Render the EmailForm component */}
+      <EmailForm onClose={() => {}} isPopup={false} inquiry="homeowners" /> {/* Render the EmailForm component with inquiry prop */}
     </div>
   );
 }

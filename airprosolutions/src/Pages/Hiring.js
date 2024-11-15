@@ -1,4 +1,5 @@
 import React from 'react';
+import EmailForm from '../Components/EmailForm';
 
 function HiringPage({ title, children }) {
   return (
@@ -21,6 +22,7 @@ function HiringPage({ title, children }) {
           As positions open, we’ll review applicants who align with our needs. We look forward to hearing how you could contribute 
           to our mission and growth. Stay tuned for updates!
         </p>
+        <EmailForm onClose={() => {}} isPopup={false} inquiry="hiring" /> {/* Render the EmailForm component with inquiry prop */}
       </div>
     </div>
   );
