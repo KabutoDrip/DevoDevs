@@ -45,35 +45,56 @@ function Services() {
 
   const services = [
     {
-      name: 'Furnace & AC Replacement',
+      name: 'HVAC Refrigerant Charging',
       category: 'Homeowners',
-      content: 'This service involves replacing old or broken heating and cooling units in your home. It includes removing the outdated furnace or AC, installing a new, efficient model, and ensuring it works effectively to keep your home at a comfortable temperature.',
-      image: '/Furnace.jpg',
+      content: 'Refrigerant charging ensures your HVAC system has the right type, amount, and quality of refrigerant to work efficiently. Our technicians use high-quality refrigerants and adjust the levels precisely, so your system runs smoothly, saves energy, and keeps you comfortable.',
+      image: '/',
     },
     {
-      name: 'HVAC Systems Installation',
+      name: 'Refrigerant Leak Detection and Repair',
+      category: 'Homeowners',
+      content: 'Refrigerant leak detection and repair ensure your HVAC system stays efficient and safe. Our technicians use advanced tools to find leaks, then seal or repair them to prevent further loss. Fixing leaks helps your system cool or heat properly, reduces energy waste, and extends its lifespan.',
+      image: '',
+    },
+    {
+      name: 'Smart Thermostat Installation',
+      category: 'Homeowners',
+      content: "Upgrading to a smart thermostat can make your home more comfortable and energy-efficient. These devices let you control your HVAC system remotely from your phone or set schedules that match your routine. They can even learn your preferences and adjust automatically to save energy. Our technicians will install and configure your smart thermostat, ensuring it's connected to your system and your Wi-Fi for seamless operation. We'll also show you how to use it, so you can enjoy lower energy bills and personalized comfort right away.",
+      image: '',
+    },
+    {
+      name: 'Emergency Repairs',
+      category: 'Homeowners',
+      content: 'Emergency HVAC repairs are here to restore your comfort fast when your system unexpectedly breaks down. Whether it’s a freezing night or a scorching day, our technicians can be there within an hour to diagnose and fix the issue. There is a $200 service fee for this expedited service, ensuring you get quick, reliable repairs when you need them most.',
+      image: '',
+    },
+    
+    //Contractors
+    {
+      name: 'Heat load calculations',
       category: 'Contractors',
-      content: 'HVAC system installation is the setup of a new heating, ventilation, and air conditioning system. This service covers choosing the right equipment, installing ducts, units, and vents, and making sure everything works together to keep your home comfortable year-round.',
+      content: "Heat load calculations ensure your HVAC installations are accurate, efficient, and compliant. Our service provides detailed assessments of a building's heating and cooling needs, considering factors like size, insulation, and occupancy.",
       image: '',
     },
     {
-      name: 'Refrigeration Leak Repair',
-      category: 'Homeowners',
-      content: 'Refrigeration leak repair addresses leaks in refrigerators or cooling systems. A technician will find the source of the leak, fix any damaged parts, and test the system to ensure it’s sealed and keeps your food or supplies at the right temperature.',
-      image: '',
-    },
-    {
-      name: 'Refrigeration Refills',
+      name: 'Unit Sizing and Selection',
       category: 'Contractors',
-      content: 'This service involves adding refrigerant to a cooling system, like a fridge or freezer, to ensure it operates properly. Low refrigerant levels can prevent the system from cooling effectively, so a refill helps maintain the correct temperature and efficiency.',
-      image: '',
+      content: 'Unit sizing and selection ensures that the HVAC system you install is perfectly matched to your client’s needs. We evaluate the space, energy requirements, and other factors to recommend the ideal unit size for optimal performance and efficiency. With accurate sizing, contractors can avoid over or undersized units, ensuring comfort, reducing energy costs, and extending the system’s lifespan.',
+      image: '/In-Attick-Rough-NC.jpg',
     },
     {
-      name: 'Minisplit and Heat Pump Installation and Repairs',
-      category: 'Homeowners',
-      content: 'Minisplit and heat pump installation and repair covers the setup, maintenance, or repair of these efficient heating and cooling systems. Technicians can install new units, make repairs to existing ones, and ensure they work efficiently to both heat and cool specific areas of your home.',
-      image: '',
+      name: 'New Home Installations',
+      category: 'Contractors',
+      content: "New home HVAC installations involve designing and installing a system that perfectly suits the home's layout, size, and energy needs. We work with contractors to ensure the right system is chosen for optimal comfort, efficiency, and long-term reliability. Our team handles everything from system selection and sizing to full installation, ensuring compliance with building codes and providing a seamless, high-quality solution that meets the needs of homeowners.",
+      image: '/NCHVAC.jpg',
     },
+    {
+      name: 'Custom Installations',
+      category: 'Contractors',
+      content: "Whether its a solar bank cooling system like the image below or cooling anything out of the ordinary, we can work with you to design a heating and cooling system to feet your hyper-specfic needs.", 
+      image: '/Solar_Bank_cooling_support_minisplit.jpg',
+    },
+
   ];
 
   // Filter services based on the selected categories
