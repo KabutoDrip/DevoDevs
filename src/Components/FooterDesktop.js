@@ -105,8 +105,8 @@ function DeskFooterComp({ children }) {
               <Phone size={20} style={{ marginRight: '5px' }} />
               <span style={{ fontWeight: 'bold' }}>Call Us</span>
             </div>
-            <a href="tel:+11234567890" style={{ color: 'inherit', textDecoration: 'none' }}>
-              <p style={{ margin: 0 }}>+1 (123) 456-7890</p>
+            <a href="tel:+14356001152" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <p style={{ margin: 0 }}>+1 (435) 600-1152</p>
             </a>
           </div>
         </div>
