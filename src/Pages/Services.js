@@ -36,11 +36,11 @@ function Services() {
 
   // Initialize refs for sections
   const sections = {
-    'Furnace & AC Replacement': useRef(null),
-    'HVAC Systems Installation': useRef(null),
-    'Refrigeration Leak Repair': useRef(null),
-    'Refrigeration Refills': useRef(null),
-    'Minisplit and Heat Pump Installation and Repairs': useRef(null),
+    'HVAC Refrigerant Charging': useRef(null),
+    'Refrigerant Leak Detection and Repair': useRef(null),
+    'Smart Thermostat Installation': useRef(null),
+    'Emergency Repairs': useRef(null),
+    'Heat load calculations': useRef(null),
   };
 
   const services = [
