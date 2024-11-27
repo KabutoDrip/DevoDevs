@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import EmailForm from './EmailForm';
 
 function FooterComp() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [contOpen, setContOpen] = useState(false);
   const [showContent, setShowContent] = useState(false); // New state to control the appearance of content
+  const [showEmailForm, setShowEmailForm] = useState(false);  // Add this line
 
   // Function to handle screen resize and set the state
   const handleResize = () => {
@@ -34,6 +36,28 @@ function FooterComp() {
     <>
       {/* Large padding before the footer */}
       <div style={{ height: '300px' }}></div>
+
+      {showEmailForm && (
+        <div style={{
+          position: 'fixed',
+          top: '60px', // Leave space for hamburger nav
+          left: 0,
+          right: 0,
+          bottom: contOpen ? '25vh' : '10vh',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          zIndex: 9,
+          overflowY: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <EmailForm
+            isPopup={true}
+            inquiry="footer"
+            onClose={() => setShowEmailForm(false)}
+          />
+        </div>
+      )}
 
       {/* Footer section */}
       <footer
@@ -68,6 +92,12 @@ function FooterComp() {
               {contOpen && showContent && ( // Only show content when showContent is true
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '5vw', paddingTop: '1vh' }}>
                   <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = 'tel:1-435-600-1152';
+                      setContOpen(false);
+                      setShowContent(false);
+                    }}
                     style={{
                       width: '40vw',
                       height: '40vw',
@@ -84,9 +114,13 @@ function FooterComp() {
                     <div style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 'bold', paddingTop: '1vh' }}>
                       Call Us
                     </div>
-                    <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: '12px' }}>1-800-123-4567</div>
+                    <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: '12px' }}>1-435-600-1152</div>
                   </div>
                   <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowEmailForm(true);
+                    }}
                     style={{
                       width: '40vw',
                       height: '40vw',
@@ -95,15 +129,26 @@ function FooterComp() {
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: '20px', // Rounded corners
+                      borderRadius: '20px',
                       color: '#004AAD',
+                      padding: '2vw',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <img src="/Email.svg" alt="Email Us" style={{ width: '30%', height: '30%' }} />
                     <div style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 'bold', paddingTop: '1vh' }}>
                       Email Us
                     </div>
-                    <div style={{ fontFamily: 'Poppins, sans-serif', fontSize: '12px' }}>info@example.com</div>
+                    <div style={{ 
+                      fontFamily: 'Poppins, sans-serif', 
+                      fontSize: '10px',
+                      wordBreak: 'break-word',
+                      textAlign: 'center',
+                      width: '100%',
+                      lineHeight: '1.2'
+                    }}>
+                      airprofessionalsolutions<br />@gmail.com
+                    </div>
                   </div>
                 </div>
               )}

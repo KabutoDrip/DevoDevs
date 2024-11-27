@@ -28,7 +28,15 @@ function HeaderComp() {
   }, []);
 
   return (
-    <header>
+    <header style={{ 
+      position: isMobile ? 'fixed' : 'static',
+      width: '100%',
+      top: 0,
+      backgroundColor: 'white',
+      zIndex: 100,
+      boxShadow: isMobile ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
+      paddingBottom: isMobile ? '10px' : '0'
+    }}>
       {isMobile ? (
         <>
           {/* Using CSS Grid layout */}
@@ -37,6 +45,7 @@ function HeaderComp() {
             gridTemplateColumns: '1fr 20vw 1fr',
             alignItems: 'center',
             justifyContent: 'space-between',
+            paddingTop: '10px'
           }}>
             <div style={{ paddingTop: '20px',paddingLeft: '1vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ fontSize: '7vw', fontFamily: 'Poppins, sans-serif', fontWeight: 'bold' ,lineHeight:'30px'}}>AIR PRO</span>
@@ -95,11 +104,11 @@ function HeaderComp() {
                 }}
               >
                 <ul style={{listStyle: 'none',padding: '0',paddingTop: '10vh',margin: '0',display: 'flex',flexDirection: 'column',justifyContent: 'space-between', height: '45%'}}>
-                <li><Link to="/home">Home</Link></li>
-                  <li><Link to="/contractors">Contractors</Link></li>
-                  <li><Link to="/homeowners">Homeowners</Link></li>
-                  <li><Link to="/join">Join Our Team</Link></li>
-                  <li><Link to="/FAQ">FAQ</Link></li>
+                  <li><Link to="/home" onClick={toggleMenu}>Home</Link></li>
+                  <li><Link to="/contractors" onClick={toggleMenu}>Contractors</Link></li>
+                  <li><Link to="/homeowners" onClick={toggleMenu}>Homeowners</Link></li>
+                  <li><Link to="/join" onClick={toggleMenu}>Join Our Team</Link></li>
+                  <li><Link to="/FAQ" onClick={toggleMenu}>FAQ</Link></li>
                 </ul>
               </div>
             </>
