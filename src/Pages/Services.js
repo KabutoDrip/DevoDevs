@@ -34,15 +34,6 @@ function Services() {
     }
   }, [location.state]);
 
-  // Initialize refs for sections
-  const sections = {
-    "HVAC Refrigerant Charging": useRef(null),
-    "Refrigerant Leak Detection and Repair": useRef(null),
-    "Smart Thermostat Installation": useRef(null),
-    "Emergency Repairs": useRef(null),
-    "Heat load calculations": useRef(null),
-  };
-
   const services = [
     //Class
     {
@@ -109,6 +100,7 @@ function Services() {
         fontFamily: "Poppins, sans-serif",
         width: "100%",
         boxSizing: "border-box",
+        padding: "20px",
       }}
     >
       <div
@@ -119,12 +111,11 @@ function Services() {
           alignItems: "center",
           marginBottom: "20px",
           backgroundColor: "orange",
-          marginLeft: "-20px",
-          marginRight: "-20px",
           padding: "20px",
+          borderRadius: "8px",
         }}
       >
-        <h2 style={{ margin: 0, fontSize: "1.8em" }}>Blog Posts</h2>
+        <h2 style={{ margin: 0, fontSize: "2em" }}>Blog Posts</h2>
 
         <div className="filter-checkboxes">
           <label
@@ -164,16 +155,18 @@ function Services() {
       <div className="filtered-services" style={{ width: "100%" }}>
         {filteredServices.length > 0 ? (
           filteredServices.map((service, index) => (
-            <section
+            <article
               key={service.name}
-              ref={sections[service.name]} // Apply the ref for each service
-              className="service-section"
+              className="service-article"
               style={{
                 display: "flex",
-                flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+                flexDirection: "column",
                 alignItems: "center",
-                marginBottom: "100px",
-                width: "100%",
+                marginBottom: "40px",
+                padding: "20px",
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
               {service.image && (
@@ -181,19 +174,23 @@ function Services() {
                   src={service.image}
                   alt={service.name}
                   style={{
-                    width: "50%",
-                    maxHeight: "50vh",
+                    width: "100%",
+                    maxHeight: "300px",
                     objectFit: "cover",
-                    marginRight: index % 2 === 0 ? "20px" : "0",
-                    marginLeft: index % 2 !== 0 ? "20px" : "0",
+                    borderRadius: "8px",
+                    marginBottom: "20px",
                   }}
                 />
               )}
-              <div style={{ width: "50%", fontSize: "1.2em" }}>
-                <h3 style={{ fontSize: "1.5em" }}>{service.name}</h3>
-                <p>{service.content}</p>
+              <div style={{ width: "100%", textAlign: "left" }}>
+                <h3 style={{ fontSize: "1.8em", marginBottom: "10px" }}>
+                  {service.name}
+                </h3>
+                <p style={{ fontSize: "1.2em", lineHeight: "1.6" }}>
+                  {service.content}
+                </p>
               </div>
-            </section>
+            </article>
           ))
         ) : (
           <p style={{ fontSize: "1.2em" }}>

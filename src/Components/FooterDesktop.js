@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import EmailForm from './EmailForm'; // Import the new EmailForm component
 
 function DeskFooterComp({ children }) {
-  const [middleWidth, setMiddleWidth] = useState('50%');
+  const [middleWidth, setMiddleWidth] = useState('100%'); // Set to full width
   const [showEmailForm, setShowEmailForm] = useState(false);
 
   const handleResize = () => {
@@ -65,83 +65,7 @@ function DeskFooterComp({ children }) {
         {<Outlet />}
         {children}
       </div>
-      <footer
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '100px',
-          boxSizing: 'border-box',
-          backgroundColor: 'transparent',
-          padding: '0 20px',
-          zIndex: 5,
-        }}
-      >
-        <div
-          style={{
-            width: `calc((100% - ${middleWidth}) / 2)`,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            left: 0,
-          }}
-        >
-          <div
-            style={{
-              color: '#004AAD',
-              fontFamily: 'Poppins, sans-serif',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <Phone size={20} style={{ marginRight: '5px' }} />
-              <span style={{ fontWeight: 'bold' }}>Call Us</span>
-            </div>
-            <a href="tel:+14356001152" style={{ color: 'inherit', textDecoration: 'none' }}>
-              <p style={{ margin: 0 }}>+1 (435) 600-1152</p>
-            </a>
-          </div>
-        </div>
-        <div
-          style={{
-            width: `calc((100% - ${middleWidth}) / 2)`,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            cursor: 'pointer',
-            position: 'absolute',
-            right: 0,
-          }}
-          onClick={handleEmailClick}
-        >
-          <div
-            style={{
-              color: '#004AAD',
-              fontFamily: 'Poppins, sans-serif',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <Mail size={20} style={{ marginRight: '5px' }} />
-              <span style={{ fontWeight: 'bold' }}>Email Us</span>
-            </div>
-            <p style={{ margin: 0, fontSize: '0.8em', textAlign: 'center', lineHeight: '1.2' }}>
-              airprofessionalsolutions<br />@gmail.com
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* Remove the footer */}
       {showEmailForm && <EmailForm onClose={() => setShowEmailForm(false)} isPopup={true} inquiry="footer" />} {/* Render the EmailForm component with inquiry prop */}
     </div>
   );

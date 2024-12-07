@@ -22,6 +22,10 @@ function HeaderComp() {
     handleResize(); // Check initial screen size on component mount
     window.addEventListener("resize", handleResize); // Listen for screen size changes
 
+    // Remove margin and padding from body
+    document.body.style.margin = 0;
+    document.body.style.padding = 0;
+
     return () => {
       window.removeEventListener("resize", handleResize); // Cleanup listener on unmount
     };
@@ -33,10 +37,11 @@ function HeaderComp() {
         position: isMobile ? "fixed" : "static",
         width: "100%",
         top: 0,
-        backgroundColor: "white",
+        backgroundColor: "#4B0082", // Deep purple background color
         zIndex: 100,
         boxShadow: isMobile ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
         paddingBottom: isMobile ? "10px" : "0",
+        margin: 0, // Remove default margin
       }}
     >
       {isMobile ? (
