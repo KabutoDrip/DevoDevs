@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { blogs } from "./Blogs";
 
 function HomePage({ title }) {
   const navigate = useNavigate();
@@ -26,9 +27,10 @@ function HomePage({ title }) {
     };
   }, []);
 
-  const handleServiceClick = (service) => {
-    navigate(`/services/${service}`); // Navigate to the Services page with the selected service
+  const handleBlogClick = (blog) => {
+    navigate(`/blogs/${blog.name}`);
   };
+
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const toRadians = (degrees) => (degrees * Math.PI) / 180;
     const R = 6371;
@@ -104,19 +106,13 @@ function HomePage({ title }) {
 
         <h4>Recent Blog Posts:</h4>
         <div
-          id="service-list"
+          id="blog-list"
           style={{ display: "flex", flexDirection: "column", gap: "10px" }}
         >
-          {[
-            "Furnace & AC Replacement",
-            "HVAC Systems Installation",
-            "Refrigeration Leak Repair",
-            "Refrigeration Refills",
-            "Minisplit and Heat Pump Installation and Repairs",
-          ].map((service) => (
+          {blogs.slice(0, 5).map((blog) => (
             <button
-              key={service}
-              onClick={() => handleServiceClick(service)}
+              key={blog.name}
+              onClick={() => handleBlogClick(blog)}
               style={{
                 padding: "10px 15px",
                 fontSize: "16px",
@@ -126,6 +122,7 @@ function HomePage({ title }) {
                 color: isMobile ? "#fff" : "#000",
                 cursor: "pointer",
                 transition: "transform 0.2s ease-in-out",
+                textAlign: "left",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.02)";
@@ -134,7 +131,10 @@ function HomePage({ title }) {
                 e.currentTarget.style.transform = "scale(1)";
               }}
             >
-              {service}
+              <strong>{blog.name}</strong>
+              <p style={{ margin: "5px 0 0", fontSize: "14px" }}>
+                {blog.content.substring(0, 100)}...
+              </p>
             </button>
           ))}
         </div>

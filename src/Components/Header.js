@@ -170,25 +170,21 @@ function HeaderComp() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/contractors" onClick={toggleMenu}>
-                      Contractors
+                    <Link to="/blogs" onClick={toggleMenu}>
+                      All Blogs
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Blogs" onClick={toggleMenu}>
-                      Blogs
+                    <Link to="/blogs" state={{ selectedCategory: "CourseBlogs" }} onClick={toggleMenu}>
+                      Course Blogs
                     </Link>
                   </li>
                   <li>
-                    <Link to="/join" onClick={toggleMenu}>
-                      Join Our Team
+                    <Link to="/blogs" state={{ selectedCategory: "ReligiousBlogs" }} onClick={toggleMenu}>
+                      Religious Blogs
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/FAQ" onClick={toggleMenu}>
-                      FAQ
-                    </Link>
-                  </li>
+                  
                 </ul>
               </div>
             </>
@@ -221,7 +217,7 @@ function HeaderComp() {
                   to="/home"
                   style={{
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#fff", // Change text color to white
                     fontWeight: "bold",
                     display: "block",
                     textAlign: "center",
@@ -231,66 +227,55 @@ function HeaderComp() {
                   Home
                 </Link>
               </li>
+              
               <li style={{ flexGrow: 1 }}>
                 <Link
-                  to="/contractors"
+                  to="/blogs"
                   style={{
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#fff", // Change text color to white
                     fontWeight: "bold",
                     display: "block",
                     textAlign: "center",
                     transition: "color 0.3s",
                   }}
                 >
-                  Contractors
+                  All Blogs
                 </Link>
               </li>
               <li style={{ flexGrow: 1 }}>
                 <Link
-                  to="/Blogs"
+                  to="/blogs"
+                  state={{ selectedCategory: "CourseBlogs" }}
                   style={{
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#fff", // Change text color to white
                     fontWeight: "bold",
                     display: "block",
                     textAlign: "center",
                     transition: "color 0.3s",
                   }}
                 >
-                  Blogs
+                  Course Blogs
                 </Link>
               </li>
               <li style={{ flexGrow: 1 }}>
                 <Link
-                  to="/join"
+                  to="/blogs"
+                  state={{ selectedCategory: "ReligiousBlogs" }}
                   style={{
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#fff", // Change text color to white
                     fontWeight: "bold",
                     display: "block",
                     textAlign: "center",
                     transition: "color 0.3s",
                   }}
                 >
-                  Join Our Team
+                  Religious Blogs
                 </Link>
               </li>
-              <li style={{ flexGrow: 1 }}>
-                <Link
-                  to="/FAQ"
-                  style={{
-                    textDecoration: "none",
-                    color: "#333",
-                    fontWeight: "bold",
-                    display: "block",
-                    textAlign: "center",
-                    transition: "color 0.3s",
-                  }}
-                >
-                  FAQ
-                </Link>
-              </li>
+               
             </ul>
           </nav>
         </div>

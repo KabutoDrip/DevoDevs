@@ -12,9 +12,9 @@ function ContractorPage({ title, children }) {
     }
   };
 
-  const navigateToServicesPage = () => {
+  const navigateToBlogsPage = () => {
     // Pass the selected category and filter data as part of the state
-    navigate(`/services/Contractors`, {
+    navigate(`/blogs/Contractors`, {
       state: {
         selectedCategory: "Contractors",
         filters: {
@@ -86,7 +86,7 @@ function ContractorPage({ title, children }) {
         <li>Comprehensive warranties</li>
       </ul>
       <div style={{ marginTop: "60px" }}>
-        <h3>Services Offered for Contractors</h3>
+        <h3>blogs Offered for Contractors</h3>
         <ul>
           <li>Furnace & AC Installation</li>
           <li>Minisplit & Heat Pump Installation</li>
@@ -97,7 +97,7 @@ function ContractorPage({ title, children }) {
       </div>
       <div style={{ marginTop: "40px" }}>
         <button
-          onClick={navigateToServicesPage}
+          onClick={navigateToBlogsPage}
           style={{
             backgroundColor: "#28a745",
             color: "white",
@@ -106,7 +106,7 @@ function ContractorPage({ title, children }) {
             cursor: "pointer",
           }}
         >
-          View Services for Contractors
+          View blogs for Contractors
         </button>
       </div>
       <h3>Contact Us</h3>

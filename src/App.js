@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./Pages/Home";
 import ContractorPage from "./Pages/Contractors";
-import BlogPage from "./Pages/Blogs";
+import Blogs from "./Pages/Blogs";
 import HiringPage from "./Pages/Hiring";
 import FAQ from "./Pages/FAQ";
-import Services from "./Pages/Services";
 import HeaderComp from "./Components/Header";
 
 function App() {
@@ -37,10 +31,10 @@ function App() {
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/contractors" element={<ContractorPage />} />
-          <Route path="/Blogs" element={<BlogPage />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/join" element={<HiringPage />} />
           <Route path="/FAQ" element={<FAQ />} />
-          <Route path="/services/:service" element={<Services />} />
+          <Route path="/blogs/:blog" element={<Blogs />} />
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="*" element={<Navigate replace to="/home" />} />
         </Routes>

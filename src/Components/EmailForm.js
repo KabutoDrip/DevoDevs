@@ -7,8 +7,8 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
     from_email: "",
     from_phone: "",
     message: "",
-    service_type: "",
-    service_type_extended: "",
+    blog_type: "",
+    blog_type_extended: "",
     inquiry: inquiry || "",
   });
 
@@ -25,23 +25,23 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    let serviceType = "";
-    let serviceTypeExtended = "";
+    let blogType = "";
+    let blogTypeExtended = "";
 
     switch (inquiry) {
       case "Blogs":
       case "contractors":
-        serviceType = "Requested a Quote";
-        serviceTypeExtended =
+        blogType = "Requested a Quote";
+        blogTypeExtended =
           "has requested a quote with the following message";
         break;
       case "footer":
-        serviceType = "Has A Question";
-        serviceTypeExtended = "has the following inquiry";
+        blogType = "Has A Question";
+        blogTypeExtended = "has the following inquiry";
         break;
       case "hiring":
-        serviceType = "Is Interested In A Job";
-        serviceTypeExtended = "is interested in a job, here is their inquiry";
+        blogType = "Is Interested In A Job";
+        blogTypeExtended = "is interested in a job, here is their inquiry";
         break;
       default:
         break;
@@ -49,13 +49,13 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
 
     const emailData = {
       ...formData,
-      service_type: serviceType,
-      service_type_extended: serviceTypeExtended,
+      blog_type: blogType,
+      blog_type_extended: blogTypeExtended,
     };
 
     emailjs
       .send(
-        "service_apstest",
+        "blog_apstest",
         "template_u70m8qs",
         emailData,
         "sDL2y5PHDSPl09T8n"
@@ -67,8 +67,8 @@ function EmailForm({ onClose, isPopup = false, inquiry }) {
           from_email: "",
           from_phone: "",
           message: "",
-          service_type: "",
-          service_type_extended: "",
+          blog_type: "",
+          blog_type_extended: "",
         });
         if (isPopup) {
           onClose();
